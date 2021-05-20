@@ -1,0 +1,12 @@
+<h3>Pokemon List</h3>
+<form method="GET" action="/pokemon">
+  <label for="nameFilter">Filter By Name:</label>
+  <input type="text" id="nameFilter" name="nameFilter">
+  <input type="submit">
+</form>
+
+<ul>
+  <% pokemon.forEach(function(pokemon) { %>
+   <li><a href = '/pokemon/<%= pokemon.id %>'><%= pokemon.name %></a></li>
+  <% }); %>
+</ul>

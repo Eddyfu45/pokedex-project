@@ -6,6 +6,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn');
+const axios = require('axios');
 
 const SECRET_SESSION = process.env.SECRET_SESSION;
 
@@ -32,9 +33,15 @@ app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   next();
 })
-app.get('/', (req, res) => {
-  res.render('index');
+app.get('/', function(req, res) {
+  let pokemonUrl = 'http://pokeapi.co/api/v2/pokemon/';
+  axios.get(pokemonUrl).then(response => {
+    let pokemon = response.data.results;
+    res.render('index', { pokemon: pokemon.slice(0, 151) });
+  });
 });
+
+app.use('/pokemon', require('./controllers/pokemon'));
 
 app.use('/auth', require('./controllers/auth'));
 
