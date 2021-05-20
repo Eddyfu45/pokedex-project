@@ -24,4 +24,9 @@ router.get("/:idx", (req,res)=>{
     })
 })
 
+router.get('/edit/:idx', (req, res) => {
+    const editIndex = parseInt(req.params.idx);
+    res.render('pokemon/edit', { pokeId: editIndex });
+});
+
 module.exports = router;

@@ -1,3 +1,4 @@
 <h4><%= myPokemon.name %> is a <%= myPokemon.types %> Pokemon.</h4>
 <p><img src="<%= myPokemon.image%>"></p>
-<p><% console.log(myPokemon.id, myPokemon.name) %></p>
+
+<a href="/pokemon/edit/<%= myPokemon.id %>">Edit</a>
