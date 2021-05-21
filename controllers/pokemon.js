@@ -1,9 +1,9 @@
-const axios = require('axios');
+// const axios = require('axios');
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
-const fetch = require('node-fetch');
-const fs = require('fs');
+// const fetch = require('node-fetch');
+// const fs = require('fs');
 
 router.get('/', function(req, res) {
     db.pokemon.findAll()
@@ -12,9 +12,9 @@ router.get('/', function(req, res) {
     })
 });
 
-router.post('/', function(req, res) {
-    res.render('pokemon/index')
-})
+// router.post('/', function(req, res) {
+//     res.render('pokemon/index')
+// })
 
 router.get("/:idx", (req,res)=>{
     const pokeIndex = parseInt(req.params.idx);
@@ -28,5 +28,17 @@ router.get('/edit/:idx', (req, res) => {
     const editIndex = parseInt(req.params.idx);
     res.render('pokemon/edit', { pokeId: editIndex });
 });
+
+router.put('/:idx', (req, res) => {
+    console.log("This is put");
+    const pokePick = parseInt(req.params.idx);
+    pokeEdit = db.pokemon.findOne({ where: {id: pokePick } })
+    .then(pokeSelect => {
+        const { name, types } = req.body;
+        pokeSelect.name = name;
+        pokeSelect.types = types;
+        res.redirect(`/pokemon/${pokeSelect}`);
+    })
+})
 
 module.exports = router;

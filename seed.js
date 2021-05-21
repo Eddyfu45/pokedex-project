@@ -26,7 +26,6 @@ let pokemonUrl = 'https://pokeapi.co/api/v2/pokemon?limit=151';
                 db.pokemon.create(testObj);
             })
         })
-        
     })
     .then(() => {
         db.pokemon.findAll()
