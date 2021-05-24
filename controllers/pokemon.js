@@ -1,10 +1,7 @@
-// const axios = require('axios');
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
 const { route } = require('./auth');
-// const fetch = require('node-fetch');
-// const fs = require('fs');
 router.get('/new', (req, res) => {
     res.render('pokemon/new');
 })
@@ -39,12 +36,10 @@ router.get('/edit/:idx', (req, res) => {
 });
 
 router.get('/new', (req, res) => {
-    console.log("going into new");
     res.render('pokemon/new');
 })
 
 router.put('/:idx', async (req, res) => {
-    console.log("This is put");
     const pokePick = parseInt(req.params.idx);
     const pokeEdit = await db.pokemon.findOne({ where: {id: pokePick } })   
     const { name, type } = req.body;
