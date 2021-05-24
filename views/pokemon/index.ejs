@@ -1,12 +1,17 @@
 <h3>Pokemon List</h3>
-<form method="GET" action="/pokemon">
-  <label for="nameFilter">Filter By Name:</label>
-  <input type="text" id="nameFilter" name="nameFilter">
-  <input type="submit">
-</form>
+<div class="row">
+  <div class="one">
+    <form method="GET" action="/pokemon">
+      <label for="nameFilter">Filter By Name:</label>
+      <input type="text" id="nameFilter" name="nameFilter">
+      <input type="submit">
+  </form>
+</div>
 
+<div class="btn btn-primary two"><a href="/pokemon/new" style="color: black;">New Pokemon</a></div>
+</div>
 <ul>
   <% pokemon.forEach(function(pokemon) { %>
-   <li><a href = '/pokemon/<%= pokemon.id %>'><%= pokemon.name %></a></li>
+   <div><a href = '/pokemon/<%= pokemon.id %>'><%= pokemon.name %></a></div>
   <% }); %>
 </ul>
